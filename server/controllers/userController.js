@@ -29,7 +29,7 @@ exports.postOne = (req, res) => {
                     message: "Could not create new user"
                 })
             }
-
+            // return {id}
             res.json(data);
         }).catch(err => {
             res.status(500).json({

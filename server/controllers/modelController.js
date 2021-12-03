@@ -2,10 +2,12 @@ const knex = require("knex")(require("../knexfile").development);
 
 exports.getAll = (req, res) => {
     knex("home_model")
+        .where({ user_id: req.params.userId })
         .then(data => {
-            if (!data.length) {
+            // console.log(data);
+            if (!data) {
                 return res.status(404).json({
-                    message: "No models"
+                    message: "User not found"
                 })
             }
             res.json(data);
@@ -19,7 +21,7 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     knex("home_model")
-        .where({ id: req.params.modelId })
+        .where({ id: req.params.modelId, user_id:req.params.userId })
         .then(data => {
             if (!data.length) {
                 return res.status(404).json({
@@ -39,7 +41,7 @@ exports.postOne = (req, res) => {
     knex("home_model")
         .insert({ id: null, style: req.body.style, land: req.body.land, location: req.body.location, age: req.body.age, user_id: req.body.userId })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             if (!data.length) {
                 return res.status(400).json({
                     message: "Could not create new model"
@@ -78,7 +80,7 @@ exports.deleteOne = (req, res) => {
         .where({ id: req.params.modelId})
         .del()
         .then(data => {
-            console.log(data);
+            // console.log(data);
             if (data!==Number(req.params.modelId)) {
                 return res.status(400).json({
                     message: "Could not delete model"
