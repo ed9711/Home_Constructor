@@ -41,7 +41,6 @@ exports.postOne = (req, res) => {
     knex("home_model")
         .insert({ id: null, style: req.body.style, land: req.body.land, location: req.body.location, age: req.body.age, user_id: req.body.userId })
         .then(data => {
-            // console.log(data);
             if (!data.length) {
                 return res.status(400).json({
                     message: "Could not create new model"
