@@ -19,13 +19,16 @@ export default class BuildPage extends Component {
             return response;
         });
         if (this.props.match.params.modelId){
-            promise.axios.get(`http://localhost:8080/model/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
+            promise.then(axios.get(`http://localhost:8080/model/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
             .then(response => {
                 newState.model = response.data;
                 return response;
-            })
+            }))
         }
-        promise.then(response => this.setState(newState));
+        promise.then(response => {
+            this.setState(newState);
+            return response;
+        });
     }
 
     onClickNext = (id, e, key) => {
@@ -55,16 +58,30 @@ export default class BuildPage extends Component {
     onSumbit = (e) => {
         console.log(e.target.age.value);
         e.preventDefault();
-        axios.post("http://localhost:8080/model", {
-            style: this.state.model.style, 
-            land: this.state.model.land, 
-            location: this.state.model.location, 
-            age: e.target.age.value, 
-            userId: localStorage.getItem("profile")
-        }).then(response => {
-            console.log("created model"+response.data)
-            this.props.history.push(`/result/${response.data[0]}`)
+        if (this.props.match.params.modelId) {
+            axios.put("http://localhost:8080/model/"+this.props.match.params.modelId, {
+                style: this.state.model.style, 
+                land: this.state.model.land, 
+                location: this.state.model.location, 
+                age: e.target.age.value, 
+                userId: localStorage.getItem("profile")
+            })
+        .then(response => {
+            console.log("changed model "+response.data)
+            this.props.history.push(`/result/${this.props.match.params.modelId}`)
         });
+        } else {
+            axios.post("http://localhost:8080/model", {
+                style: this.state.model.style, 
+                land: this.state.model.land, 
+                location: this.state.model.location, 
+                age: e.target.age.value, 
+                userId: localStorage.getItem("profile")
+            }).then(response => {
+                console.log("created model "+response.data)
+                this.props.history.push(`/result/${response.data[0]}`)
+            });
+        }
     }
 
     render() {

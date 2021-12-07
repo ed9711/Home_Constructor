@@ -14,7 +14,7 @@ function App() {
         <Nav/>
         <Switch>
           <Route path="/" exact component={HomePage}/>
-          <Route path="/build" component={BuildPage}/>
+          <Route path="/build" exact component={BuildPage}/>
           <Route path="/build/:modelId" component={BuildPage}/>
           <Route path="/profile/" exact component={Profile}/>
           <Route path="/profile/:userId" component={Profile}/>

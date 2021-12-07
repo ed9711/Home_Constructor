@@ -5,10 +5,13 @@ import Input from '../../components/Input/Input';
 export default class Profile extends Component {
     state = {userId:null, models:[]};
 
-    getUser = () => {
-        axios.get("http://localhost:8080/model/"+this.props.match.params.userId)
+    getUser = (id) => {
+        console.log(this.props.match.params.userId, id);
+        const uId = this.props.match.params.userId || id;
+        axios.get("http://localhost:8080/model/"+uId)
             .then(response => {
-                this.setState({userId:this.props.match.params.userId, models:response.data});
+                console.log(response.data);
+                this.setState({userId:uId, models:response.data});
             })
     }
 
@@ -16,12 +19,22 @@ export default class Profile extends Component {
         console.log("profile did mount");
         if (localStorage.getItem("profile")) {
             this.props.history.push(`/profile/${localStorage.getItem("profile")}`)
-            this.getUser();
+            this.getUser(localStorage.getItem("profile"));
         }
-        // if (this.props.match.params.userId){
-        //     this.getUser();
-        // }
     }
+
+    onDelete = (e, id) => {
+        e.preventDefault();
+        axios.delete("http://localhost:8080/model/"+id)
+        .then(response => {
+            this.getUser();
+        });
+    };
+
+    onEdit = (e, id) => {
+        e.preventDefault();
+        this.props.history.push(`/build/${id}`);
+    };
 
     render() {
         if (!this.state.userId){
@@ -35,6 +48,22 @@ export default class Profile extends Component {
         return (
             <>
                 <div className="profile__title">My Models</div>
+                <div className="profile__models">
+                    {this.state.models.map((model) => {
+                        return (
+                            <div key={model.id}>
+                                <ul className="model__detail">
+                                    <li className="model__item">Model Id: {model.id}</li>
+                                    <li className="model__item">Location: {model.location}</li>
+                                    <li className="model__item">Type: {model.style}</li>
+                                    <li className="model__item">Land size: {model.land}</li>
+                                </ul>
+                                <button className="model__delete" onClick={(e) => this.onDelete(e, model.id)} >Delete</button>
+                                <button className="model__edit" onClick={(e) => this.onEdit(e, model.id)} >Edit</button>
+                            </div>
+                        );
+                    })}
+                </div>
             </>
         )
     }

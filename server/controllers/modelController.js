@@ -60,7 +60,8 @@ exports.putOne = (req, res) => {
         .where({ id: req.params.modelId})
         .update({ style: req.body.style, land: req.body.land, location: req.body.location, age: req.body.age, user_id: req.body.userId })
         .then(data => {
-            if (data!==Number(req.params.modelId)) {
+            // console.log(data, Number(req.params.modelId), data!==Number(req.params.modelId));
+            if (data!==1) {
                 return res.status(400).json({
                     message: "Could not update model"
                 })
@@ -79,8 +80,8 @@ exports.deleteOne = (req, res) => {
         .where({ id: req.params.modelId})
         .del()
         .then(data => {
-            // console.log(data);
-            if (data!==Number(req.params.modelId)) {
+            // console.log(data, Number(req.params.modelId));
+            if (data!==1) {
                 return res.status(400).json({
                     message: "Could not delete model"
                 })
