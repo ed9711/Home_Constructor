@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Model from '../../components/Model/Model';
 
 export default class BuildPage extends Component {
     state = {prices:null, model:{}, display:[
@@ -74,6 +75,7 @@ export default class BuildPage extends Component {
         }
         return (
             <div>
+                <Model render={this.state.model}/>
                 <form action="" className="build__form" id="model__info" onSubmit={e => this.onSumbit(e)}>
                     <div className="build__group" style={{display: this.state.display[0].value}}>
                         <label>
@@ -85,7 +87,7 @@ export default class BuildPage extends Component {
                             Townhouse
                         </label>
                         <label>
-                            <input type="radio" value="apratment" name="style" onChange={(e) => this.onChange(e, "style")} />
+                            <input type="radio" value="apartment" name="style" onChange={(e) => this.onChange(e, "style")} />
                             Apartment
                         </label>
                         <button className="bulid__next" type="button" onClick={(e) => this.onClickNext(0, e, "style")}>Next</button>
