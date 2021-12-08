@@ -19,7 +19,7 @@ function App() {
           <Route path="/build/:modelId" component={BuildPage}/>
           <Route path="/profile/" exact component={Profile}/>
           <Route path="/profile/:userId" component={Profile}/>
-          <Route path="/result/:id" component={Result}/>
+          <Route path="/result/:userId/:modelId" component={Result}/>
         </Switch>
       </BrowserRouter>
     </div>

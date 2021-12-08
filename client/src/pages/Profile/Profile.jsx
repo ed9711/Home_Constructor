@@ -41,7 +41,7 @@ export default class Profile extends Component {
         this.props.history.push(`/build/${id}`);
     };
     onResult = (id) => {
-        this.props.history.push(`/result/${id}`);
+        this.props.history.push(`/result/${this.state.userId}/${id}`);
     };
 
     render() {

@@ -80,7 +80,7 @@ export default class BuildPage extends Component {
                 userId: localStorage.getItem("profile")
             }).then(response => {
                 console.log("created model "+response.data)
-                this.props.history.push(`/result/${response.data[0]}`)
+                this.props.history.push(`/result/${localStorage.getItem("profile")}/${response.data[0]}`)
             });
         }
     }
