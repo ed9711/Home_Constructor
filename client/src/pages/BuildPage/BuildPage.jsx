@@ -12,7 +12,7 @@ export default class BuildPage extends Component {
     ]};
     
     componentDidMount = () => {
-        console.log("build did mount");
+        // console.log("build did mount");
         const newState = this.state;
         const promise = axios.get("http://localhost:8080/prices")
         .then(response => {
@@ -38,7 +38,7 @@ export default class BuildPage extends Component {
         newState.display[id].value = "none";
         newState.display[id+1].value = "flex";
         newState.model[key] = e.target.form.elements[key].value;
-        console.log(e.target.form.elements[key].value);
+        // console.log(e.target.form.elements[key].value);
         this.setState(newState);
     }
 
@@ -57,7 +57,7 @@ export default class BuildPage extends Component {
     }
 
     onSumbit = (e) => {
-        console.log(e.target.age.value);
+        // console.log(e.target.age.value);
         e.preventDefault();
         if (this.props.match.params.modelId) {
             axios.put("http://localhost:8080/model/"+this.props.match.params.modelId, {
@@ -68,7 +68,7 @@ export default class BuildPage extends Component {
                 userId: localStorage.getItem("profile")
             })
         .then(response => {
-            console.log("changed model "+response.data)
+            // console.log("changed model "+response.data)
             this.props.history.push(`/result/${this.props.match.params.modelId}`)
         });
         } else {
@@ -79,7 +79,7 @@ export default class BuildPage extends Component {
                 age: e.target.age.value, 
                 userId: localStorage.getItem("profile")
             }).then(response => {
-                console.log("created model "+response.data)
+                // console.log("created model "+response.data)
                 this.props.history.push(`/result/${localStorage.getItem("profile")}/${response.data[0]}`)
             });
         }

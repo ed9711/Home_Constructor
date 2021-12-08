@@ -7,17 +7,17 @@ export default class Profile extends Component {
     state = {userId:null, models:[]};
 
     getUser = (id) => {
-        console.log(this.props.match.params.userId, id);
+        // console.log(this.props.match.params.userId, id);
         const uId = this.props.match.params.userId || id;
         axios.get("http://localhost:8080/model/"+uId)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 this.setState({userId:uId, models:response.data});
             })
     }
 
     componentDidMount = () => {
-        console.log("profile did mount");
+        // console.log("profile did mount");
         if (localStorage.getItem("profile")) {
             this.props.history.push(`/profile/${localStorage.getItem("profile")}`)
             this.getUser(localStorage.getItem("profile"));

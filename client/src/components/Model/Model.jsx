@@ -5,7 +5,7 @@ import LoadLand from './LoadLand';
 import LoadLocation from './LoadLocation';
 
 export default function Model(props) {
-    console.log(props);
+    // console.log(props);
     // const ref = useRef();
     if (props.render.style && props.render.land && props.render.location) {
         return (

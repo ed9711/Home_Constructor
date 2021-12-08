@@ -31,9 +31,9 @@ export default function Result() {
             </div>
         )
     }
-    console.log(model);
-    console.log(prices);
-    console.log(salary);
+    // console.log(model);
+    // console.log(prices);
+    // console.log(salary);
     let total = 0;
     total += parseInt(prices[`${model.style}_${model.land}`]);
     if (model.location === "vancouver"){
