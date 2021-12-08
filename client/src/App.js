@@ -5,11 +5,12 @@ import BuildPage from './pages/BuildPage/BuildPage';
 import Profile from './pages/Profile/Profile';
 import Result from './pages/ResultPage/Result';
 import Nav from './components/Nav/Nav';
+import "./App.scss"
 
 
 function App() {
   return (
-    <>
+    <div className="background">
       <BrowserRouter>
         <Nav/>
         <Switch>
@@ -21,7 +22,7 @@ function App() {
           <Route path="/result/:id" component={Result}/>
         </Switch>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

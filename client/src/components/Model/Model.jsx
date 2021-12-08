@@ -1,4 +1,4 @@
-import React, {useRef,Suspense} from 'react'
+import React, {Suspense} from 'react'
 import { Canvas } from '@react-three/fiber'
 import LoadHome from './LoadHome';
 import LoadLand from './LoadLand';
@@ -6,7 +6,7 @@ import LoadLocation from './LoadLocation';
 
 export default function Model(props) {
     console.log(props);
-    const ref = useRef();
+    // const ref = useRef();
     if (props.render.style && props.render.land && props.render.location) {
         return (
             <Canvas>

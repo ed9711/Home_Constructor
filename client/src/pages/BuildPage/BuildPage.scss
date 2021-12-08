@@ -1,0 +1,42 @@
+.build {
+    height: 70%;
+    background: url(../../assets/landscape.png);
+    &__group {
+        height: 19.6vh;
+        background-color: rgba(192, 192, 192, 0.8);
+        background-image: url(../../assets/wood.png);
+        justify-content: center;
+    }
+    &__next {
+        background-color: rgba($color: white, $alpha: 0.7);
+        padding: 0.5rem 3rem;
+        font-size: 20px;
+        color: darkorange;
+        font-weight: 500;
+        margin: 3rem 1rem;
+        border: darkslateblue 2px solid;
+        border-radius: 40px;
+        &:hover {
+            animation-name: colour-change;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+    }
+    &__prev {
+        @extend .build__next;
+    }
+    &__submit {
+        @extend .build__next;
+    }
+    &__label {
+        font-size: 30px;
+        margin: 3rem 2rem 2rem 2rem;
+        font-style: oblique;
+        text-align: center;
+    }
+}
+
+form button {
+    
+}

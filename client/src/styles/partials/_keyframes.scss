@@ -1,0 +1,13 @@
+@use "./colours" as *;
+
+@keyframes colour-change {
+    0% {
+        color: darkorange;
+    }
+    50% {
+        color: rgba(37, 39, 201, 0.76);
+    }
+    100% {
+        color: rgba(2, 0, 129, 0.966);
+    }
+}

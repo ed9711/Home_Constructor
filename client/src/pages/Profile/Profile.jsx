@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import Input from '../../components/Input/Input';
+import "./Profile.scss"
 
 export default class Profile extends Component {
     state = {userId:null, models:[]};
@@ -25,6 +26,8 @@ export default class Profile extends Component {
 
     onDelete = (e, id) => {
         e.preventDefault();
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
         axios.delete("http://localhost:8080/model/"+id)
         .then(response => {
             this.getUser();
@@ -33,7 +36,12 @@ export default class Profile extends Component {
 
     onEdit = (e, id) => {
         e.preventDefault();
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
         this.props.history.push(`/build/${id}`);
+    };
+    onResult = (id) => {
+        this.props.history.push(`/result/${id}`);
     };
 
     render() {
@@ -46,12 +54,12 @@ export default class Profile extends Component {
             );
         }
         return (
-            <>
+            <div className="profile">
                 <div className="profile__title">My Models</div>
                 <div className="profile__models">
                     {this.state.models.map((model) => {
                         return (
-                            <div key={model.id}>
+                            <div className="model" onClick={() => this.onResult(model.id)} key={model.id}>
                                 <ul className="model__detail">
                                     <li className="model__item">Model Id: {model.id}</li>
                                     <li className="model__item">Location: {model.location}</li>
@@ -64,7 +72,7 @@ export default class Profile extends Component {
                         );
                     })}
                 </div>
-            </>
+            </div>
         )
     }
 }

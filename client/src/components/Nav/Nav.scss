@@ -1,0 +1,30 @@
+@use "../../styles/partials/keyframes" as *;
+
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(192, 192, 192, 0.5);
+    &__item {
+        text-decoration: none;
+        padding: 0.5rem 3rem;
+        font-size: 20px;
+        color: darkorange;
+        font-weight: 500;
+        &--home {
+            border: darkslateblue 2px solid;
+            border-radius: 40px;
+            margin: 1rem 1rem 1rem 5vw;
+        }
+        &--profile {
+            border: darkslategray 2px solid;
+            border-radius: 40px;
+            margin: 1rem 5vw 1rem 1rem;
+        }
+        &:hover {
+            animation-name: colour-change;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+    }
+}

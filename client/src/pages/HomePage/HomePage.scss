@@ -1,0 +1,49 @@
+@use "../../styles/partials/mixins" as *;
+
+.home {
+    position: relative;
+    &__title {
+        @include title;
+        right: 5vw;
+        top: 10vw;
+    }
+    &__start {
+        font-size: 40px;
+        font-weight: 400;
+        color: darkorange;
+        text-decoration: none;
+        position: absolute;
+        right: 5vw;
+        top: 15vw;
+        transform: skewY(-20deg);
+        border: darkslateblue 2px solid;
+        border-radius: 40px;
+        text-shadow: 
+
+        -1px -3px 3px navy,
+        -2px -3px 3px navy,
+        -3px -3px 3px navy,
+
+        -2px -4px 2px navy,
+        -3px -4px 2px navy,
+        -4px -4px 2px navy,
+
+        -3px -5px 1px navy,
+        -4px -5px 1px navy,
+        -5px -5px 1px navy;
+        &:hover {
+            top: calc(15vw + 3px);
+            box-shadow: -1px -3px 3px navy,
+            -2px -3px 3px navy,
+            -3px -3px 3px navy,
+
+            -2px -4px 2px navy,
+            -3px -4px 2px navy,
+            -4px -4px 2px navy,
+
+            -3px -5px 1px navy,
+            -4px -5px 1px navy,
+            -5px -5px 1px navy;
+        }
+    }
+}

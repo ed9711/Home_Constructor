@@ -1,0 +1,52 @@
+@use "../../styles/partials/mixins" as *;
+
+.profile {
+    display: flex;
+    justify-content: flex-end;
+    &__title {
+        @include title;
+        padding: 2rem;
+        padding-left: 5vw;
+        top: 15vw;
+        left: 5vw;
+    }
+    &__models {
+        display: flex;
+        max-width: 60vw;
+        flex-wrap: wrap;
+        padding: 2rem;
+    }
+}
+.model {
+    background-color: rgba($color: darkorange, $alpha: 0.6);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 50px;
+    width: 25%;
+    &__detail {
+        list-style: none;
+    }
+    &__item {
+        font-size: 18px;
+        color: rgb(241, 241, 241);
+        font-weight: 600;
+    }
+    &__delete {
+        padding: 1rem 0.5rem;
+        color: darkorange;
+        font-weight: 500;
+        border: darkslateblue 2px solid;
+        border-radius: 50%;
+        margin: 0.5rem 1rem 0.5rem 2rem;
+        &:hover {
+            animation-name: colour-change;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+    }
+    &__edit {
+        @extend .model__delete;
+        padding: 1rem;
+    }
+}
