@@ -9,6 +9,10 @@ in /client run npm install.
 
 in /server run npm install.
 
+in /server run knex migrate:latest.
+
+in /server run knex seed:run.
+
 start client and server.
 
 Enjoy!
