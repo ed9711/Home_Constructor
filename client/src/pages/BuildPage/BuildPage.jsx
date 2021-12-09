@@ -69,7 +69,7 @@ export default class BuildPage extends Component {
             })
         .then(response => {
             // console.log("changed model "+response.data)
-            this.props.history.push(`/result/${this.props.match.params.modelId}`)
+            this.props.history.push(`/result/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
         });
         } else {
             axios.post("http://localhost:8080/model", {

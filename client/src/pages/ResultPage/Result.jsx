@@ -46,13 +46,13 @@ export default function Result() {
     } else if (model.age > 20) {
         total = total * 0.8;
     }
-    const month = (Math.log(1+(total*0.95*0.0025)/(salary/12/3))/Math.log(1+0.0025));
+    const month = (Math.log(1+(total*0.95*0.0025)/(salary/3))/Math.log(1+0.0025));
 
     return (
         <div className="result">
             <div className="result__title">Your home price is estimated at ${total}</div>
             <div className="result__detail">At a interest rate of 3% a year, 
-            with your yearly take home salary of ${salary} and 5% down payment, 
+            with your monthly take home salary of ${salary} and 5% down payment, 
             it is recommended that you take out a {month/12} years loan.</div>
 
             <ul className="result__detail">

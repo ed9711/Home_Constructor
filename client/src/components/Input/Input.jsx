@@ -4,11 +4,11 @@ import axios from "axios";
 export default function Input(props) {
     const handleSubmit = (e, props) => {
         e.preventDefault();
-        // console.log(props);
+        console.log(props.props);
         axios.post("http://localhost:8080/user/", {salary:e.target.salary.value})
         .then(response => {
             localStorage.setItem("profile", JSON.stringify(response.data[0]))
-            props.props.history.push('/build');
+            props.props.push('/build');
           }
         ).catch(error => console.error(error));
       };
