@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Model from '../../components/Model/Model';
+import { Canvas } from '@react-three/fiber'
 import "./BuildPage.scss";
 
 export default class BuildPage extends Component {
@@ -14,22 +15,25 @@ export default class BuildPage extends Component {
     componentDidMount = () => {
         // console.log("build did mount");
         const newState = this.state;
-        const promise = axios.get("http://localhost:8080/prices")
+        axios.get("http://localhost:8080/prices")
         .then(response => {
             newState.prices = response.data;
-            return response;
-        });
-        if (this.props.match.params.modelId){
-            promise.then(axios.get(`http://localhost:8080/model/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
-            .then(response => {
-                newState.model = response.data;
-                return response;
-            }))
-        }
-        promise.then(response => {
+            // return response;
+        })
+        .then(response => {
+            if (this.props.match.params.modelId){
+                axios.get(`http://localhost:8080/model/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
+                .then(response => {
+                    newState.model = response.data;
+                    // return response;
+                })
+                .then(response => {
+                    this.setState(newState);
+                    // return response;
+                });
+        } else {
             this.setState(newState);
-            return response;
-        });
+        }})
     }
 
     onClickNext = (id, e, key) => {
@@ -85,6 +89,8 @@ export default class BuildPage extends Component {
         }
     }
 
+    
+
     render() {
         if (!this.state.prices) {
             return (
@@ -93,7 +99,9 @@ export default class BuildPage extends Component {
         }
         return (
             <div className="build">
-                <Model render={this.state.model}/>
+                <Canvas style={{ touchAction: "none" }}>
+                    <Model render={this.state.model}/>
+                </Canvas>
                 <form action="" className="build__form" id="model__info" onSubmit={e => this.onSumbit(e)}>
                     <div className="build__group" style={{display: this.state.display[0].value}}>
                         <label className="build__label">
