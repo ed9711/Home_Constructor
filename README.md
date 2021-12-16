@@ -11,6 +11,8 @@ in /client run npm install
 
 in /server run npm install
 
+run npm install -g knex
+
 in /server run knex migrate:latest
 
 in /server run knex seed:run
