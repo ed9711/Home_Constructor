@@ -7,13 +7,13 @@ Using React, SASS, Node.js, Express.js, Three.js, React-three-fiber, MySQL.
 
 ## Requirements:
 
-in /client run npm install.
+in /client run npm install
 
-in /server run npm install.
+in /server run npm install
 
-in /server run knex migrate:latest.
+in /server run knex migrate:latest
 
-in /server run knex seed:run.
+in /server run knex seed:run
 
 start client and server.
 #### Enjoy!
