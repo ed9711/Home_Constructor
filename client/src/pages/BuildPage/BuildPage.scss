@@ -1,6 +1,11 @@
 .build {
     height: 70%;
     background: url(../../assets/landscape.png);
+    &__notice {
+        position: absolute;
+        color: rgba($color: navy, $alpha: 0.8);
+        right: 5vw;
+    }
     &__group {
         height: 19.6vh;
         background-color: rgba(192, 192, 192, 0.8);

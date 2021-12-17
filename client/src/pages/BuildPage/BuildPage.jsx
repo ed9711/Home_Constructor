@@ -36,6 +36,9 @@ export default class BuildPage extends Component {
         }})
     }
 
+    checkDefault = (value, key) => {
+        return value === this.state.model[key];
+    }; 
     onClickNext = (id, e, key) => {
         e.preventDefault();
         const newState = this.state;
@@ -99,21 +102,22 @@ export default class BuildPage extends Component {
         }
         return (
             <div className="build">
+                <h3 className="build__notice">You can use WASD/mouse to move the model and scroll wheel to zoom</h3>
                 <Canvas style={{ touchAction: "none" }}>
                     <Model render={this.state.model}/>
                 </Canvas>
                 <form action="" className="build__form" id="model__info" onSubmit={e => this.onSumbit(e)}>
                     <div className="build__group" style={{display: this.state.display[0].value}}>
                         <label className="build__label">
-                            <input type="radio" value="house" name="style" defaultChecked onChange={(e) => this.onChange(e, "style")}/>
+                            <input type="radio" value="house" name="style" defaultChecked={this.checkDefault("house", "style")} onChange={(e) => this.onChange(e, "style")}/>
                             House
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="townhouse" name="style" onChange={(e) => this.onChange(e, "style")} />
+                            <input type="radio" value="townhouse" name="style" defaultChecked={this.checkDefault("townhouse", "style")} onChange={(e) => this.onChange(e, "style")} />
                             Townhouse
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="apartment" name="style" onChange={(e) => this.onChange(e, "style")} />
+                            <input type="radio" value="apartment" name="style" defaultChecked={this.checkDefault("apartment", "style")} onChange={(e) => this.onChange(e, "style")} />
                             Apartment
                         </label>
                         <button className="build__next" type="button" onClick={(e) => this.onClickNext(0, e, "style")}>Next</button>
@@ -121,11 +125,11 @@ export default class BuildPage extends Component {
                     <div className="build__group" style={{display: this.state.display[1].value}}>
                         <button className="build__prev" type="button" onClick={(e) => this.onClickLast(1, e)}>Previous</button>
                         <label className="build__label">
-                            <input type="radio" value="large" name="land" defaultChecked onChange={(e) => this.onChange(e, "land")}/>
+                            <input type="radio" value="large" name="land" defaultChecked={this.checkDefault("large", "land")} onChange={(e) => this.onChange(e, "land")}/>
                             Large land
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="small" name="land" onChange={(e) => this.onChange(e, "land")}/>
+                            <input type="radio" value="small" name="land" defaultChecked={this.checkDefault("small", "land")} onChange={(e) => this.onChange(e, "land")}/>
                             Small land
                         </label>
                         <button className="build__next" type="button" onClick={(e) => this.onClickNext(1, e, "land")}>Next</button>
@@ -133,11 +137,11 @@ export default class BuildPage extends Component {
                     <div className="build__group" style={{display: this.state.display[2].value}}>
                         <button className="build__prev" type="button" onClick={(e) => this.onClickLast(2, e)}>Previous</button>
                         <label className="build__label">
-                            <input type="radio" value="vancouver" name="location" defaultChecked onChange={(e) => this.onChange(e, "location")}/>
+                            <input type="radio" value="vancouver" name="location" defaultChecked={this.checkDefault("vancouver", "location")} onChange={(e) => this.onChange(e, "location")}/>
                             Vancouver
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="toronto" name="location" onChange={(e) => this.onChange(e, "location")}/>
+                            <input type="radio" value="toronto" name="location" defaultChecked={this.checkDefault("toronto", "location")} onChange={(e) => this.onChange(e, "location")}/>
                             Toronto
                         </label>
                         <button className="build__next" type="button" onClick={(e) => this.onClickNext(2, e, "location")}>Next</button>
@@ -145,15 +149,15 @@ export default class BuildPage extends Component {
                     <div className="build__group" style={{display: this.state.display[3].value}}>
                         <button className="build__prev" type="button" onClick={(e) => this.onClickLast(3, e)}>Previous</button>
                         <label className="build__label">
-                            <input type="radio" value="60" name="age" defaultChecked onChange={(e) => this.onChange(e, "age")}/>
+                            <input type="radio" value="60" name="age" defaultChecked={this.checkDefault(60, "age")} onChange={(e) => this.onChange(e, "age")}/>
                             Older higher than 50 years
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="30" name="age" onChange={(e) => this.onChange(e, "age")}/>
+                            <input type="radio" value="30" name="age" defaultChecked={this.checkDefault(30, "age")} onChange={(e) => this.onChange(e, "age")}/>
                             Age between 50 years and 20 years
                         </label>
                         <label className="build__label">
-                            <input type="radio" value="10" name="age" onChange={(e) => this.onChange(e, "age")}/>
+                            <input type="radio" value="10" name="age" defaultChecked={this.checkDefault(10, "age")} onChange={(e) => this.onChange(e, "age")}/>
                             Newer than 20 years
                         </label>
                         <button type="submit" form="model__info" className="build__submit">Submit</button>

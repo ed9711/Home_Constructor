@@ -22,9 +22,12 @@
             border: none;
             background: none;
             right: 5vw;
-            top: 15vw;
+            top: 10vw;
+            border-radius: 40px;
+            font-size: 40px;
+            font-weight: 400;
             &:hover {
-                top: calc(15vw + 3px);
+                top: calc(10vw + 3px);
                 box-shadow: -1px -3px 3px navy,
                 -2px -3px 3px navy,
                 -3px -3px 3px navy,
