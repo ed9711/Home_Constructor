@@ -1,21 +1,22 @@
-import React from 'react'
+import React from 'react';
 import axios from "axios";
+import "./Input.scss";
 
 export default function Input(props) {
-    const handleSubmit = (e, props) => {
+    console.log(props.history);
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(props.props);
         axios.post("http://localhost:8080/user/", {salary:e.target.salary.value})
         .then(response => {
             localStorage.setItem("profile", JSON.stringify(response.data[0]))
-            props.props.push('/build');
+            props.history.push('/build');
           }
         ).catch(error => console.error(error));
       };
 
     return (
-        <div>
-            <form action="#" method="post" className="inputform" id="form" onSubmit={(event) => handleSubmit(event, props)}>
+        <div className="input">
+            <form className="inputform" action="#" method="post" id="form" onSubmit={(event) => handleSubmit(event)}>
             <label className="inputform__lable" htmlFor="salary">
               What is your monthly salary?
             </label>
