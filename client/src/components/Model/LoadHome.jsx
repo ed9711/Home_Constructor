@@ -22,7 +22,7 @@ export default function LoadHome(props) {
             {...props}
             ref={ref}
             scale={0.8}>
-            <primitive ref={ref} position={[-2, 0, -1]} object={house.scene} scale={0.2}/>
+            <primitive ref={ref} position={[-2, -0.5, -1]} object={house.scene} scale={0.2}/>
             </mesh>
         )
     } else if (props.style==="apartment") {
@@ -32,7 +32,7 @@ export default function LoadHome(props) {
             {...props}
             ref={ref}
             scale={1}>
-            <primitive ref={ref} position={[0, -1, 2]} object={apartment.scene} scale={0.002}/>
+            <primitive ref={ref} position={[0, -2.2, 1]} object={apartment.scene} scale={0.002}/>
             </mesh>
         )
     } else if (props.style==="townhouse") {
@@ -42,7 +42,7 @@ export default function LoadHome(props) {
             {...props}
             ref={ref}
             scale={1}>
-            <primitive ref={ref} position={[0, -1, 2]} object={townhouse.scene} scale={0.0015}/>
+            <primitive ref={ref} position={[-0.5, -2.2, 1]} object={townhouse.scene} scale={0.0015}/>
             </mesh>
         )
     }

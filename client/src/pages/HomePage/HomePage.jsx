@@ -18,7 +18,7 @@ export default function HomePage() {
     return (
         <div className="home">
             <div className="home__title">Home Constructor</div>
-            <Input props={history}/>
+            <Input history={history}/>
         </div>
     )
 }

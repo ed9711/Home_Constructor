@@ -49,7 +49,7 @@ export default class Profile extends Component {
             return (
                 <>
                     <div className="profile__title">You haven't entered a salary yet</div>
-                    <Input props={this.props}/>
+                    <Input history={this.props.history}/>
                 </>
             );
         }

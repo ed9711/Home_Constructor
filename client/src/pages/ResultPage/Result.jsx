@@ -52,8 +52,8 @@ export default function Result() {
         <div className="result">
             <div className="result__title">Your home price is estimated at ${total}</div>
             <div className="result__detail">At a interest rate of 3% a year, 
-            with your monthly take home salary of ${salary} and 5% down payment, 
-            it is recommended that you take out a {month/12} years loan.</div>
+            with your monthly take home salary of ${Math.round(salary * 100) / 100} and 5% down payment, 
+            it is recommended that you take out a {Math.round(month/12) + 1} years loan.</div>
 
             <ul className="result__detail">
                 <li className="result__item">Model Id: {model.id}</li>

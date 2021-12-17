@@ -8,15 +8,16 @@ export default function LoadLand(props) {
     const ref = useRef()
     
     useFrame((state, delta) => {
-        // ref.current.rotation.x = 0.4;
         // ref.current.rotation.y += 0.01;
     })
     // Return the view, these are regular Threejs elements expressed in JSX
     let distance = -5;
     let scale = 15;
+    let height = 0;
     if (props.land==="large"){
-        distance = -10;
-        scale = 25;
+        distance = -7;
+        scale = 20;
+        height = 0.7;
     }
     const lawn = useLoader(GLTFLoader, `/3d_assets/lawn/scene.gltf`);
     if (props.land){
@@ -25,7 +26,7 @@ export default function LoadLand(props) {
             {...props}
             ref={ref}
             scale={1}>
-            <primitive ref={ref} position={[0, 0, distance]} object={lawn.scene} scale={scale}/>
+            <primitive ref={ref} position={[0, height, distance]} object={lawn.scene} scale={scale}/>
             </mesh>
         )
     } else {
