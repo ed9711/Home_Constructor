@@ -1,0 +1,42 @@
+@use "../../styles/partials/mixins" as *;
+
+.input {
+    position: relative;
+    top: 10vw;
+    &form {
+        &__lable {
+            @include title;
+            left: 30vw;
+            top: 6rem;
+            font-size: 22px;
+        }
+        &__field {
+            position: absolute;
+            top: 11rem;
+            left: 31vw;
+            font-size: 22px;
+            transform: skewY(-18deg);
+        }
+        &__submit {
+            @include title;
+            border: none;
+            background: none;
+            right: 5vw;
+            top: 15vw;
+            &:hover {
+                top: calc(15vw + 3px);
+                box-shadow: -1px -3px 3px navy,
+                -2px -3px 3px navy,
+                -3px -3px 3px navy,
+    
+                -2px -4px 2px navy,
+                -3px -4px 2px navy,
+                -4px -4px 2px navy,
+    
+                -3px -5px 1px navy,
+                -4px -5px 1px navy,
+                -5px -5px 1px navy;
+            }
+        }
+    }
+}
