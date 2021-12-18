@@ -5,17 +5,33 @@
     &__title {
         @include title;
         right: 5vw;
-        top: 10vw;
+        top: 20vw;
+        @include tablet {
+            top: 10vw;
+            font-size: 48px;
+        }
+        @include desktop {
+            font-size: 60px;
+        }
     }
     &__start {
-        font-size: 40px;
+        @include tablet {
+            font-size: 28px;
+            right: 5vw;
+            top: 20vw;
+        }
+        @include desktop {
+            top: 15vw;
+            font-size: 40px;
+        }
+        font-size: 20px;
         font-weight: 400;
         color: darkorange;
         text-decoration: none;
         position: absolute;
         right: 5vw;
-        top: 15vw;
-        transform: skewY(-20deg);
+        top: 40vw;
+        transform: skewY(-18deg);
         border: darkslateblue 2px solid;
         border-radius: 40px;
         text-shadow: 
