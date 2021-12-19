@@ -5,17 +5,24 @@
     &__title {
         @include title;
         right: 5vw;
-        top: 10vw;
+        top: 20vw;
+        @include tablet {
+            top: 10vw;
+            font-size: 48px;
+        }
+        @include desktop {
+            font-size: 60px;
+        }
     }
     &__start {
-        font-size: 40px;
+        font-size: 20px;
         font-weight: 400;
         color: darkorange;
         text-decoration: none;
         position: absolute;
         right: 5vw;
-        top: 15vw;
-        transform: skewY(-20deg);
+        top: 40vw;
+        transform: skewY(-18deg);
         border: darkslateblue 2px solid;
         border-radius: 40px;
         text-shadow: 
@@ -32,7 +39,7 @@
         -4px -5px 1px navy,
         -5px -5px 1px navy;
         &:hover {
-            top: calc(15vw + 3px);
+            top: calc(40vw + 3px);
             box-shadow: -1px -3px 3px navy,
             -2px -3px 3px navy,
             -3px -3px 3px navy,
@@ -44,6 +51,21 @@
             -3px -5px 1px navy,
             -4px -5px 1px navy,
             -5px -5px 1px navy;
+        }
+        @include tablet {
+            font-size: 28px;
+            right: 5vw;
+            top: 20vw;
+            &:hover {
+                top: calc(20vw + 3px);
+            }
+        }
+        @include desktop {
+            top: 15vw;
+            font-size: 40px;
+            &:hover {
+                top: calc(15vw + 3px);
+            }
         }
     }
 }
