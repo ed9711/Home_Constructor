@@ -24,7 +24,7 @@ start client and server.
 ## Future ideas to be implemented:
 
 - [x] Fully responsive 3d model.
-- [ ] Screen responsive layout.
+- [x] Screen responsive layout.
 - [ ] Login auth.
 - [ ] More models.
 - [ ] Connect to paid real world data API. \(Optional)
