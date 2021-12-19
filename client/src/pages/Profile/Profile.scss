@@ -3,41 +3,101 @@
 .profile {
     display: flex;
     justify-content: flex-end;
+    background-image: url(../../assets/construction2.png);
+    background-size: cover;
+    min-height: 100vh;
+    padding-left: 5vw;
+    
     &__title {
         @include title;
-        padding: 2rem;
-        padding-left: 5vw;
-        top: 15vw;
-        left: 5vw;
+        left: 25vw;
+        top: 96px;
+        @include tablet {
+            font-size: 40px;
+            padding: 2rem;
+            padding-left: 5vw;
+            top: 115px;
+            left: 20vw;
+        }
+        @include desktop {
+            font-size: 60px;
+            left: 5vw;
+        }
     }
     &__models {
         display: flex;
-        max-width: 60vw;
+        margin-top: 6rem;
         flex-wrap: wrap;
-        padding: 2rem;
+        justify-content: center;
+        @include tablet {
+            margin-top: 10rem;
+        }
+        @include desktop {
+            justify-content: flex-start;
+            align-content: flex-start;
+            padding: 2rem;
+            margin-top: 0;
+            max-width: 60vw;
+        }
     }
 }
 .model {
+    box-sizing: border-box;
     background-color: rgba($color: darkorange, $alpha: 0.6);
-    margin: 1rem;
-    padding: 1rem;
     border-radius: 50px;
-    width: 230px;
+    padding: 1rem;
+    margin-right: 5vw;
+    margin-bottom: 5vw;
+    width: 132px;
+    height: 140px;
+    @include tablet {
+        margin-right: 1.5rem;
+        margin-bottom: 1.5rem;
+        width: 150px;
+        height: 155px;
+    }
+    @include desktop {
+        width: 230px;
+        height: 220px;
+    }
     &__detail {
         list-style: none;
+        padding: 0;
+        @include desktop {
+            padding-left: 1rem;
+        }
     }
     &__item {
-        font-size: 18px;
+        font-size: 11px;
         color: rgb(241, 241, 241);
         font-weight: 600;
+        @include tablet {
+            font-size: 13px;
+        }
+        @include desktop {
+            font-size: 18px;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
     }
     &__delete {
-        padding: 1rem 0.5rem;
         color: darkorange;
+        font-size: 10px;
         font-weight: 500;
         border: darkslateblue 2px solid;
-        border-radius: 50%;
-        margin: 0.5rem 1rem 0.5rem 2rem;
+        padding: 0.2rem;
+        border-radius: 10px;
+        @include tablet {
+            border-radius: 15px;
+            padding: 0.5rem;
+        }
+        @include desktop {
+            border-radius: 50%;
+            padding: 1rem 0.5rem;
+            margin: 1rem;
+        }
         &:hover {
             animation-name: colour-change;
             animation-duration: 0.3s;
@@ -47,6 +107,9 @@
     }
     &__edit {
         @extend .model__delete;
-        padding: 1rem;
+        padding: 0.2rem 9px;
+        @include tablet {
+            padding: 0.5rem 13px;
+        }
     }
 }
