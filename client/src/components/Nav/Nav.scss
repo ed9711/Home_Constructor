@@ -1,15 +1,26 @@
 @use "../../styles/partials/keyframes" as *;
+@use "../../styles//partials/mixins" as *;
 
 .nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: rgba(192, 192, 192, 0.5);
+    @include tablet {
+        justify-content: flex-end;
+    }
     &__item {
         text-decoration: none;
-        padding: 0.5rem 3rem;
-        font-size: 20px;
+        padding: 0.5rem 2.5rem;
         color: darkorange;
+        text-shadow: -0.5px -0.5px 0 darkslategray, 0.5px -0.5px 0 darkslategray, -0.5px 0.5px 0 darkslategray, 0.5px 0.5px 0 darkslategray;
         font-weight: 500;
+        background-color: rgba($color: gray, $alpha: 0.7);
+        @include tablet {
+            background-color: transparent;
+            padding: 0.5rem 3rem;
+            font-size: 20px;
+            text-shadow: none;
+        }
         &--home {
             border: darkslateblue 2px solid;
             border-radius: 40px;

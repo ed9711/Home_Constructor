@@ -61,13 +61,15 @@ export default class Profile extends Component {
                         return (
                             <div className="model" onClick={() => this.onResult(model.id)} key={model.id}>
                                 <ul className="model__detail">
-                                    <li className="model__item">Model Id: {model.id}</li>
+                                    {/* <li className="model__item">Model Id: {model.id}</li> */}
                                     <li className="model__item">Location: {model.location}</li>
                                     <li className="model__item">Type: {model.style}</li>
                                     <li className="model__item">Land size: {model.land}</li>
                                 </ul>
-                                <button className="model__delete" onClick={(e) => this.onDelete(e, model.id)} >Delete</button>
-                                <button className="model__edit" onClick={(e) => this.onEdit(e, model.id)} >Edit</button>
+                                <div className="model__buttons">
+                                    <button className="model__delete" onClick={(e) => this.onDelete(e, model.id)} >Delete</button>
+                                    <button className="model__edit" onClick={(e) => this.onEdit(e, model.id)} >Edit</button>
+                                </div>
                             </div>
                         );
                     })}
