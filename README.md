@@ -7,9 +7,13 @@ Using React, SASS, Node.js, Express.js, Three.js, React-three-fiber, MySQL.
 
 ## Requirements:
 
+install mysql with username root and password rootroot
+
 in /client run npm install
 
 in /server run npm install
+
+in /server run node createDatabase.js
 
 run npm install -g knex
 
