@@ -30,6 +30,7 @@ start client and server.
 - [x] Fully responsive 3d model.
 - [x] Screen responsive layout.
 - [ ] Login auth.
+- [ ] Deployment!
 - [ ] Allow custom name for each model.
 - [ ] More models.
 - [ ] Connect to paid real world data API. \(Optional)
