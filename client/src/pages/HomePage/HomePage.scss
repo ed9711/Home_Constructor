@@ -61,11 +61,11 @@
             }
         }
         @include desktop {
-            top: 15vw;
+            // top: 15vw;
             font-size: 40px;
-            &:hover {
-                top: calc(15vw + 3px);
-            }
+            // &:hover {
+            //     top: calc(15vw + 3px);
+            // }
         }
     }
 }

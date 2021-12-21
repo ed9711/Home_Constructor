@@ -56,7 +56,7 @@ export default function Result() {
             it is recommended that you take out a {Math.round(month/12) + 1} years loan.</div>
 
             <ul className="result__detail">
-                <li className="result__item">Model Id: {model.id}</li>
+                {/* <li className="result__item">Model Id: {model.id}</li> */}
                 <li className="result__item">Location: {model.location}</li>
                 <li className="result__item">Type: {model.style}</li>
                 <li className="result__item">Land size: {model.land}</li>
