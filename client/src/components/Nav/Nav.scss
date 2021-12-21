@@ -3,7 +3,7 @@
 
 .nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: rgba(192, 192, 192, 0.5);
     @include tablet {
         justify-content: flex-end;
