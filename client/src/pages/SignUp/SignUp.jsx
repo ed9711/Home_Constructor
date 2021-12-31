@@ -1,12 +1,12 @@
 import React from 'react'
 import "./SignUp"
 
-export default function SignUp() {
+export default function SignUp(props) {
     // pop up from login page
 
     return (
-        <div className='signup'>
-            <form action="" className='signup__form' method="post" id="signup__form" onSubmit={(event) => handleSubmit(event)}>
+        <div className='signup' style={{display:props.display}}>
+            <form action="" className='signup__form' method="post" id="signup__form" onSubmit={(event) => props.signup(event)}>
             <label className="signup__label" htmlFor="email">Email</label>
             <input
               className="signup__field"
@@ -47,6 +47,7 @@ export default function SignUp() {
             ></input>
             </form>
             <button className="signup__submit" type="submit" form="signup__form" >Sign Up</button>
+            <button className="signup__cancel" type="click" onClick={props.cancel}  >Cancel</button>
         </div>
     )
 }
