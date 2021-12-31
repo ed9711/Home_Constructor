@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Login"
 
-export default function Login() {
+export default function Login(props) {
+
+    const [display, setDisplay] = useState("none");
+
+    const handleSignUp = (e) => {
+        setDisplay("block");
+        props.signup(e);
+    };
+
     return (
         <div className='login'>
-            <form action="" className='login__form' method="post" id="login__form" onSubmit={(event) => handleSubmit(event)}>
+            <form action="" className='login__form' method="post" id="login__form" onSubmit={(event) => props.login(event)}>
                 <label className="login__label" htmlFor="email">Email</label>
                 <input
                 className="login__field"
@@ -25,7 +33,7 @@ export default function Login() {
             </form>
             <button className="login__submit" type="submit" form="login__form" >Log In</button>
             <hr />
-            <button className='login__submit' type='click'>Create new account</button>
+            <button className='login__submit' type='click' onClick={(event) => handleSignUp(event)}>Create new account</button>
         </div>
     )
 }

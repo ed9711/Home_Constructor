@@ -3,9 +3,6 @@ import "./SignUp"
 
 export default function SignUp() {
     // pop up from login page
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
 
     return (
         <div className='signup'>
@@ -50,7 +47,6 @@ export default function SignUp() {
             ></input>
             </form>
             <button className="signup__submit" type="submit" form="signup__form" >Sign Up</button>
-            
         </div>
     )
 }
