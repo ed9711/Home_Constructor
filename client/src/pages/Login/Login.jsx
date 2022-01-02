@@ -16,12 +16,13 @@ export default function Login(props) {
 
     const signUp = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/signup", {
-            username: e.target.email.value,
+        axios.post("http://localhost:8080/user/signup", {
+            email: e.target.email.value,
             password: e.taget.password.value,
             salary: e.target.salary.value
         }).then(response => {
             if (response.data.success) {
+                // success message?
                 setDisplay("none");
             }
         })

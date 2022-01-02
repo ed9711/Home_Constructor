@@ -14,16 +14,16 @@ export default function HomePage() {
     const [errorMsg, setErrorMsg] = useState("");
     const login = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8080/login", {
-            username: e.target.email.value,
+        axios.post("http://localhost:8080/user/login", {
+            email: e.target.email.value,
             password: e.target.password.value
         }).then(response => {
             if (response.data.token) {
-                sessionStorage.setItem("token", response.data.token);
+                sessionStorage.setItem(JSON.stringify(response.data.id), response.data.token);
                 setIsLoggedIn(true);
             } else {
                 setErrorLogin(true);
-                setErrorMsg(response.data.error.message);
+                setErrorMsg(response.data.message);
             }
         })
     };

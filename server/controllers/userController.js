@@ -1,4 +1,5 @@
 const knex = require("knex")(require("../knexfile").development);
+const jwt = require('jsonwebtoken')
 
 exports.getOne = (req, res) => {
     knex("user")
@@ -13,15 +14,20 @@ exports.getOne = (req, res) => {
             res.json(data[0]);
         }).catch(err => {
             res.status(500).json({
-                errorMessage: "Internal Error",
+                message: "Internal Error",
                 error: err
             })
         });
 };
 
-exports.postOne = (req, res) => {
+exports.signUp = (req, res) => {
     knex("user")
-        .insert({ id: null, salary: req.body.salary })
+        .insert({ 
+            id: null, 
+            email: req.body.email, 
+            password: req.body.password, 
+            salary: req.body.salary 
+        })
         .then(data => {
             console.log(data);
             if (!data.length) {
@@ -29,11 +35,11 @@ exports.postOne = (req, res) => {
                     message: "Could not create new user"
                 })
             }
-            // return {id}
-            res.json(data);
+            // return id
+            res.json(data[0]);
         }).catch(err => {
             res.status(500).json({
-                errorMessage: "Internal Error",
+                message: "Internal Error",
                 error: err
             })
         });
@@ -53,7 +59,7 @@ exports.putOne = (req, res) => {
             res.json(data);
         }).catch(err => {
             res.status(500).json({
-                errorMessage: "Internal Error",
+                message: "Internal Error",
                 error: err
             })
         });
@@ -74,7 +80,31 @@ exports.deleteOne = (req, res) => {
             res.json(data);
         }).catch(err => {
             res.status(500).json({
-                errorMessage: "Internal Error",
+                message: "Internal Error",
+                error: err
+            })
+        });
+};
+
+exports.login = (req, res) => {
+    knex("user")
+        .where({ email: req.body.email})
+        .then(data => {
+            // console.log(data[0].password, req.body.password);
+            if (data[0].password !== req.body.password) {
+                return res.status(403).json({
+                    message: "User name or password incorrect"
+                })
+            }
+
+            const token = jwt.sign(
+                {id:data[0]},
+                "exampleSecretKey"
+              );
+            res.json({id: data[0].id, token:token});
+        }).catch(err => {
+            res.status(404).json({
+                message: "User name incorrect",
                 error: err
             })
         });
