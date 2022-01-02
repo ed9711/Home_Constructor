@@ -31,7 +31,7 @@ start client and server.
 - [x] Screen responsive layout.
 - [ ] Login auth.
 - [ ] Email auth.
-- [ ] User mutability.
+- [ ] User mutability (change data, logout, delete).
 - [ ] Deployment!
 - [ ] Allow custom name for each model.
 - [ ] More models.
