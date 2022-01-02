@@ -30,6 +30,7 @@ start client and server.
 - [x] Fully responsive 3d model.
 - [x] Screen responsive layout.
 - [ ] Login auth.
+- [ ] User mutability.
 - [ ] Deployment!
 - [ ] Allow custom name for each model.
 - [ ] More models.
