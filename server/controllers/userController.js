@@ -1,23 +1,38 @@
 const knex = require("knex")(require("../knexfile").development);
 const jwt = require('jsonwebtoken')
 
-exports.getOne = (req, res) => {
-    knex("user")
-        .where({ id: req.params.userId })
-        .then(data => {
-            if (!data.length) {
-                return res.status(404).json({
-                    message: "User does not exist"
-                })
-            }
-
-            res.json(data[0]);
-        }).catch(err => {
-            res.status(500).json({
-                message: "Internal Error",
-                error: err
-            })
+exports.authorize = (req, res, next) => {
+    jwt.verify(req.body.token, "exampleSecretKey", (err, decoded) => {
+      if (err) {
+        res.status(403).json({
+          success: false,
+          message: "no token"
         });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    })
+  }
+
+exports.getOne = (req, res) => {
+    // knex("user")
+    //     .where({ id: req.params.userId })
+    //     .then(data => {
+    //         if (!data.length) {
+    //             return res.status(404).json({
+    //                 message: "User does not exist"
+    //             })
+    //         }
+
+    //         res.json(data[0]);
+    //     }).catch(err => {
+    //         res.status(500).json({
+    //             message: "Internal Error",
+    //             error: err
+    //         })
+    //     });
+    res.json(req.decoded.data);
 };
 
 exports.signUp = (req, res) => {
@@ -93,18 +108,18 @@ exports.login = (req, res) => {
             // console.log(data[0].password, req.body.password);
             if (data[0].password !== req.body.password) {
                 return res.status(403).json({
-                    message: "User name or password incorrect"
+                    message: "Username or password incorrect"
                 })
             }
-
+            delete data[0].password;
             const token = jwt.sign(
-                {id:data[0]},
+                {data:data[0]},
                 "exampleSecretKey"
               );
             res.json({id: data[0].id, token:token});
         }).catch(err => {
             res.status(404).json({
-                message: "User name incorrect",
+                message: "Username incorrect",
                 error: err
             })
         });
