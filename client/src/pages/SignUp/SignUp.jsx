@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import "./SignUp"
 
@@ -17,9 +18,9 @@ export default function SignUp(props) {
                 seterrMessage("");
                 alert("Account creation successful!");
                 props.cancel();
-            } else {
-                seterrMessage(response.data.message);
             }
+        }).catch(err => {
+            seterrMessage(err.response.data.message);
         })
     };
 

@@ -40,6 +40,7 @@ export default function Login(props) {
             <hr />
             <button className='login__submit' type='click' onClick={handleSignUp}>Create new account</button>
         </div>
+        <div className='login__message'>{props.message}</div>
         <SignUp display={display} cancel={handleCancel}/>
         </>
     )

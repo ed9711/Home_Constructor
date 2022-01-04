@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import Input from '../../components/Input/Input'
 import { useHistory } from "react-router-dom";
 import "./HomePage.scss"
-import Login from '../LogIn/Login';
 import axios from 'axios';
+import Login from "../Login/Login";
 
 export default function HomePage() {
     let history = useHistory();
@@ -19,17 +19,18 @@ export default function HomePage() {
             password: e.target.password.value
         }).then(response => {
             if (response.data.token) {
-                sessionStorage.setItem(JSON.stringify(response.data.id), response.data.token);
+                sessionStorage.setItem("id", response.data.id);
+                sessionStorage.setItem("profile", response.data.token);
                 setIsLoggedIn(true);
-            } else {
-                setErrorLogin(true);
-                setErrorMsg(response.data.message);
             }
-        })
+        }).catch(err => {
+            setErrorLogin(true);
+            setErrorMsg(err.response.data.message);
+        });
     };
 
     // if (localStorage.getItem("profile")){
-    if (isLoggedIn){
+    if (sessionStorage.getItem("profile") || isLoggedIn){
         return (
             <div className="home">
                 <div className="home__title">Home Constructor</div>
@@ -42,7 +43,7 @@ export default function HomePage() {
         <div className="home">
             <div className="home__title">Home Constructor</div>
             {/* <Input history={history}/> */}
-            <Login login={login}/>
+            <Login login={login} message={errorMsg}/>
         </div>
     )
 }

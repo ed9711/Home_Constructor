@@ -7,20 +7,26 @@ export default class Profile extends Component {
     state = {userId:null, models:[]};
 
     getUser = (id) => {
-        // console.log(this.props.match.params.userId, id);
-        const uId = this.props.match.params.userId || id;
-        axios.get("http://localhost:8080/model/"+uId)
+        axios.get("http://localhost:8080/model/"+id)
             .then(response => {
-                // console.log(response.data);
-                this.setState({userId:uId, models:response.data});
+                this.setState({userId:id, models:response.data});
             })
     }
 
     componentDidMount = () => {
         // console.log("profile did mount");
-        if (localStorage.getItem("profile")) {
-            this.props.history.push(`/profile/${localStorage.getItem("profile")}`)
-            this.getUser(localStorage.getItem("profile"));
+        if (sessionStorage.getItem("profile")) {
+            // this.props.history.push(`/profile/${sessionStorage.getItem("profile")}`)
+            axios.post("http://localhost:8080/user/", {
+                token: sessionStorage.getItem("profile")
+            })
+            .then(response => {
+                this.getUser(response.data.id);
+            }).catch(err => {
+                console.log("token auth failed");
+            })
+        } else {
+            this.props.history.push("/");
         }
     }
 
@@ -45,14 +51,14 @@ export default class Profile extends Component {
     };
 
     render() {
-        if (!this.state.userId){
-            return (
-                <>
-                    <div className="profile__title">You haven't entered a salary yet</div>
-                    <Input history={this.props.history}/>
-                </>
-            );
-        }
+        // if (!this.state.userId){
+        //     return (
+        //         <>
+        //             <div className="profile__title">You haven't entered a salary yet</div>
+        //             <Input history={this.props.history}/>
+        //         </>
+        //     );
+        // }
         return (
             <div className="profile">
                 <div className="profile__title">My Models</div>

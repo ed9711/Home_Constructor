@@ -121,19 +121,20 @@ exports.login = (req, res) => {
     knex("user")
         .where({ email: req.body.email})
         .then(data => {
-            console.log(data[0].password, req.body.password);
+            // console.log(data[0].password, req.body.password);
             bcrypt.compare(req.body.password, data[0].password, (err, result) => {
                 if (!result) {
-                    return res.status(403).json({
+                    res.status(403).json({
                         message: "Username or password incorrect"
                     })
+                } else {
+                    delete data[0].password;
+                    const token = jwt.sign(
+                        {data:data[0]},
+                        "exampleSecretKey"
+                    );
+                    res.json({id: data[0].id, token:token});
                 }
-                delete data[0].password;
-                const token = jwt.sign(
-                    {data:data[0]},
-                    "exampleSecretKey"
-                  );
-                res.json({id: data[0].id, token:token});
               });
         }).catch(err => {
             res.status(404).json({
