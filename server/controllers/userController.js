@@ -1,5 +1,7 @@
 const knex = require("knex")(require("../knexfile").development);
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const bcrypt = require ('bcrypt');
+
 
 exports.authorize = (req, res, next) => {
     jwt.verify(req.body.token, "exampleSecretKey", (err, decoded) => {
@@ -37,27 +39,41 @@ exports.getOne = (req, res) => {
 
 exports.signUp = (req, res) => {
     knex("user")
-        .insert({ 
-            id: null, 
-            email: req.body.email, 
-            password: req.body.password, 
-            salary: req.body.salary 
-        })
-        .then(data => {
-            console.log(data);
-            if (!data.length) {
-                return res.status(400).json({
-                    message: "Could not create new user"
+    .where({ email: req.body.email })
+    .then(data => {
+        // console.log(data[0]);
+        if (data[0]){
+            return res.status(400).json({
+                message: `Account with ${req.body.email} already exist`
+            });
+        } else {
+            const saltRounds = 10;
+            bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+                knex("user")
+                .insert({ 
+                    id: null, 
+                    email: req.body.email, 
+                    password: hash, 
+                    salary: req.body.salary 
                 })
-            }
-            // return id
-            res.json(data[0]);
-        }).catch(err => {
-            res.status(500).json({
-                message: "Internal Error",
-                error: err
-            })
-        });
+                .then(data => {
+                    console.log(data);
+                    if (!data.length) {
+                        return res.status(400).json({
+                            message: "Could not create new user"
+                        })
+                    }
+                    // return id
+                    res.json(data[0]);
+                }).catch(err => {
+                    res.status(500).json({
+                        message: "Internal Error",
+                        error: err
+                    })
+                });
+            });
+        }
+    })
 };
 
 exports.putOne = (req, res) => {
@@ -105,18 +121,20 @@ exports.login = (req, res) => {
     knex("user")
         .where({ email: req.body.email})
         .then(data => {
-            // console.log(data[0].password, req.body.password);
-            if (data[0].password !== req.body.password) {
-                return res.status(403).json({
-                    message: "Username or password incorrect"
-                })
-            }
-            delete data[0].password;
-            const token = jwt.sign(
-                {data:data[0]},
-                "exampleSecretKey"
-              );
-            res.json({id: data[0].id, token:token});
+            console.log(data[0].password, req.body.password);
+            bcrypt.compare(req.body.password, data[0].password, (err, result) => {
+                if (!result) {
+                    return res.status(403).json({
+                        message: "Username or password incorrect"
+                    })
+                }
+                delete data[0].password;
+                const token = jwt.sign(
+                    {data:data[0]},
+                    "exampleSecretKey"
+                  );
+                res.json({id: data[0].id, token:token});
+              });
         }).catch(err => {
             res.status(404).json({
                 message: "Username incorrect",

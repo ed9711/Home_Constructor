@@ -14,20 +14,6 @@ export default function Login(props) {
         setDisplay("none");
     };
 
-    const signUp = (e) => {
-        e.preventDefault();
-        axios.post("http://localhost:8080/user/signup", {
-            email: e.target.email.value,
-            password: e.taget.password.value,
-            salary: e.target.salary.value
-        }).then(response => {
-            if (response.data.success) {
-                // success message?
-                setDisplay("none");
-            }
-        })
-    };
-
     return (
         <>
         <div className='login'>
@@ -54,7 +40,7 @@ export default function Login(props) {
             <hr />
             <button className='login__submit' type='click' onClick={handleSignUp}>Create new account</button>
         </div>
-        <SignUp display={display} signup={signUp} cancel={handleCancel}/>
+        <SignUp display={display} cancel={handleCancel}/>
         </>
     )
 }
