@@ -4,10 +4,14 @@
     position: relative;
     &__title {
         @include title;
-        right: 5vw;
-        top: 20vw;
+        position: relative;
+        padding: 3rem 8vw;
+        text-align: center;
         @include tablet {
-            top: 10vw;
+            position: absolute;
+            text-align: initial;
+            right: -5vw;
+            top: 5vw;
             font-size: 48px;
         }
         @include desktop {
@@ -20,8 +24,8 @@
         color: darkorange;
         text-decoration: none;
         position: absolute;
-        right: 5vw;
-        top: 40vw;
+        right: 10vw;
+        top: 6rem;
         transform: skewY(-18deg);
         border: darkslateblue 2px solid;
         border-radius: 40px;
@@ -61,11 +65,7 @@
             }
         }
         @include desktop {
-            // top: 15vw;
             font-size: 40px;
-            // &:hover {
-            //     top: calc(15vw + 3px);
-            // }
         }
     }
 }

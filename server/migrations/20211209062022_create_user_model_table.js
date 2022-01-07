@@ -13,6 +13,8 @@ exports.up = function(knex) {
       })
     .createTable('user', (table) => {
         table.increments('id').primary();
+        table.string('email').notNullable();
+        table.string('password').notNullable();
         table.integer('salary').notNullable();
     })
     .createTable('home_model', (table) => {

@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber'
 import "./BuildPage.scss";
 
 export default class BuildPage extends Component {
-    state = {prices:null, model:{}, display:[
+    state = {prices:null, id:sessionStorage.getItem("id"), model:{}, display:[
         {value: "flex"},
         {value: "none"},
         {value: "none"},
@@ -22,7 +22,7 @@ export default class BuildPage extends Component {
         })
         .then(response => {
             if (this.props.match.params.modelId){
-                axios.get(`http://localhost:8080/model/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
+                axios.get(`http://localhost:8080/model/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
                 .then(response => {
                     newState.model = response.data;
                     // return response;
@@ -72,11 +72,11 @@ export default class BuildPage extends Component {
                 land: this.state.model.land, 
                 location: this.state.model.location, 
                 age: e.target.age.value, 
-                userId: localStorage.getItem("profile")
+                userId: sessionStorage.getItem("id")
             })
         .then(response => {
             // console.log("changed model "+response.data)
-            this.props.history.push(`/result/${localStorage.getItem("profile")}/${this.props.match.params.modelId}`)
+            this.props.history.push(`/result/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
         });
         } else {
             axios.post("http://localhost:8080/model", {
@@ -84,10 +84,10 @@ export default class BuildPage extends Component {
                 land: this.state.model.land, 
                 location: this.state.model.location, 
                 age: e.target.age.value, 
-                userId: localStorage.getItem("profile")
+                userId: sessionStorage.getItem("id")
             }).then(response => {
                 // console.log("created model "+response.data)
-                this.props.history.push(`/result/${localStorage.getItem("profile")}/${response.data[0]}`)
+                this.props.history.push(`/result/${sessionStorage.getItem("id")}/${response.data[0]}`)
             });
         }
     }
