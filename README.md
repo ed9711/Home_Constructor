@@ -29,9 +29,9 @@ start client and server.
 
 - [x] Fully responsive 3d model.
 - [x] Screen responsive layout.
-- [ ] Login auth.
+- [x] User signup and login auth.
 - [ ] Email auth.
-- [ ] User mutability (change data, logout, delete).
+- [ ] User mutability (change user data, logout, delete).
 - [ ] Deployment!
 - [ ] Allow custom name for each model.
 - [ ] More models.
