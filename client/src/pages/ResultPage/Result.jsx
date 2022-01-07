@@ -17,7 +17,9 @@ export default function Result() {
         }).then(axios.get(`http://localhost:8080/model/${params.userId}/${params.modelId}`)
         .then(response => {
             setModel(response.data);
-        }).then(axios.get(`http://localhost:8080/user/${params.userId}`)
+        }).then(axios.post(`http://localhost:8080/user/`, {
+            token: sessionStorage.getItem("profile")
+        })
         .then(response => {
             setSalary(response.data.salary);
         })));

@@ -3,8 +3,10 @@
 .background {
     background: repeating-linear-gradient(45deg, #3f87a6, #ebf8e1 15%, #f69d3c 20%);
     background-image: url(./assets/construction.png);
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 1rem;
     background-size: cover;
     @include tablet {
+        overflow: hidden;
     }
 }
