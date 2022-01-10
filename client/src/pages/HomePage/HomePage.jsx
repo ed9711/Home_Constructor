@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import "./HomePage.scss"
 import axios from 'axios';
 import Login from "../Login/Login";
+import { API_URL } from '../../config';
 
 export default function HomePage() {
     let history = useHistory();
@@ -14,7 +15,7 @@ export default function HomePage() {
     const [errorMsg, setErrorMsg] = useState("");
     const login = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8080/user/login", {
+        axios.post(`${API_URL}/user/login`, {
             email: e.target.email.value,
             password: e.target.password.value
         }).then(response => {

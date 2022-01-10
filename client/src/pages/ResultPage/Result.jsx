@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect }  from 'react'
 import { useParams } from 'react-router-dom'
+import { API_URL } from '../../config';
 import "./Result.scss"
 
 export default function Result() {
@@ -10,14 +11,14 @@ export default function Result() {
     const [salary, setSalary] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/prices")
+        axios.get(`${API_URL}/prices`)
         .then(response => {
             setPrices(response.data);
             return response;
-        }).then(axios.get(`http://localhost:8080/model/${params.userId}/${params.modelId}`)
+        }).then(axios.get(`${API_URL}/model/${params.userId}/${params.modelId}`)
         .then(response => {
             setModel(response.data);
-        }).then(axios.post(`http://localhost:8080/user/`, {
+        }).then(axios.post(`${API_URL}/user/`, {
             token: sessionStorage.getItem("profile")
         })
         .then(response => {
