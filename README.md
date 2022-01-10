@@ -4,6 +4,8 @@ A fullstack CRUD web app that lets you build a mock model of your dream home and
 
 Using React, SASS, Node.js, Express.js, Three.js, React-three-fiber, MySQL.
 
+Deployed at https://home-constructor.herokuapp.com/
+
 
 ## Requirements:
 
@@ -32,7 +34,7 @@ start client and server.
 - [x] User signup and login auth.
 - [ ] Email auth.
 - [ ] User mutability (change user data, logout, delete).
-- [ ] Deployment!
+- [x] Deployment!
 - [ ] Allow custom name for each model.
 - [ ] More models.
 - [ ] Connect to paid real world data API. \(Optional)
