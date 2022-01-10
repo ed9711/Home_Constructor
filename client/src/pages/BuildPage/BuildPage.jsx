@@ -3,6 +3,7 @@ import axios from 'axios';
 import Model from '../../components/Model/Model';
 import { Canvas } from '@react-three/fiber'
 import "./BuildPage.scss";
+import { API_URL } from '../../config';
 
 export default class BuildPage extends Component {
     state = {prices:null, id:sessionStorage.getItem("id"), model:{}, display:[
@@ -15,14 +16,14 @@ export default class BuildPage extends Component {
     componentDidMount = () => {
         // console.log("build did mount");
         const newState = this.state;
-        axios.get("http://localhost:8080/prices")
+        axios.get(`${API_URL}/prices`)
         .then(response => {
             newState.prices = response.data;
             // return response;
         })
         .then(response => {
             if (this.props.match.params.modelId){
-                axios.get(`http://localhost:8080/model/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
+                axios.get(`${API_URL}/model/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
                 .then(response => {
                     newState.model = response.data;
                     // return response;
@@ -67,7 +68,7 @@ export default class BuildPage extends Component {
         // console.log(e.target.age.value);
         e.preventDefault();
         if (this.props.match.params.modelId) {
-            axios.put("http://localhost:8080/model/"+this.props.match.params.modelId, {
+            axios.put(`${API_URL}/model/${this.props.match.params.modelId}`, {
                 style: this.state.model.style, 
                 land: this.state.model.land, 
                 location: this.state.model.location, 
@@ -79,7 +80,7 @@ export default class BuildPage extends Component {
             this.props.history.push(`/result/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
         });
         } else {
-            axios.post("http://localhost:8080/model", {
+            axios.post(`${API_URL}/model`, {
                 style: this.state.model.style, 
                 land: this.state.model.land, 
                 location: this.state.model.location, 

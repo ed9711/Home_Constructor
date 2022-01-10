@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from "axios";
 import "./Input.scss";
+import { API_URL } from '../../config';
 
 export default function Input(props) {
     console.log(props.history);
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/user/", {salary:e.target.salary.value})
+        axios.post(`${API_URL}/user/`, {salary:e.target.salary.value})
         .then(response => {
             localStorage.setItem("profile", JSON.stringify(response.data[0]))
             props.history.push('/build');

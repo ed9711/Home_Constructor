@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { API_URL } from '../../config';
 import "./SignUp.scss"
 
 
@@ -19,7 +20,7 @@ export default function SignUp(props) {
 
     const signUp = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/user/signup", {
+        axios.post(`${API_URL}/user/signup`, {
             email: e.target["email_sign"].value,
             password: e.taget["password_sign"].value,
             salary: e.target.salary.value

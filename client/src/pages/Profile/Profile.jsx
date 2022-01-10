@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import Input from '../../components/Input/Input';
+import { API_URL } from '../../config';
 import "./Profile.scss"
 
 export default class Profile extends Component {
     state = {userId:null, models:[]};
 
     getUser = (id) => {
-        axios.get("http://localhost:8080/model/"+id)
+        axios.get(`${API_URL}/model/${id}`)
             .then(response => {
                 this.setState({userId:id, models:response.data});
             })
@@ -17,7 +18,7 @@ export default class Profile extends Component {
         // console.log("profile did mount");
         if (sessionStorage.getItem("profile")) {
             // this.props.history.push(`/profile/${sessionStorage.getItem("profile")}`)
-            axios.post("http://localhost:8080/user/", {
+            axios.post(`${API_URL}/user/`, {
                 token: sessionStorage.getItem("profile")
             })
             .then(response => {
@@ -34,7 +35,7 @@ export default class Profile extends Component {
         e.preventDefault();
         e.cancelBubble = true;
         if (e.stopPropagation) e.stopPropagation();
-        axios.delete("http://localhost:8080/model/"+id)
+        axios.delete(`${API_URL}/model/${id}`)
         .then(response => {
             this.getUser();
         });
