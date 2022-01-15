@@ -8,10 +8,10 @@ export default function SignUp(props) {
     // pop up from login page
     const [errMessage, seterrMessage] = useState("");
 
-    const checkPass = (e) => {
+    const checkPass = (e, i) => {
         e.preventDefault();
-        console.log(e);
-        if (e.target.form[1].value !== e.target.value) {
+        // console.log(e.target.form[1].value, e.target.value, e.target.form[2].value );
+        if (e.target.form[i].value !== e.target.value) {
             seterrMessage("Passwords don't match.");
         } else {
             seterrMessage("");
@@ -20,9 +20,10 @@ export default function SignUp(props) {
 
     const signUp = (e) => {
         e.preventDefault();
+        // console.log(e.target["email_sign"].value, e.target["password_sign"].value, e.target.salary.value)
         axios.post(`${API_URL}/user/signup`, {
             email: e.target["email_sign"].value,
-            password: e.taget["password_sign"].value,
+            password: e.target["password_sign"].value,
             salary: e.target.salary.value
         }).then(response => {
             if (!response.data.message) {
@@ -58,7 +59,7 @@ export default function SignUp(props) {
                   placeholder="Password"
                   minLength="8"
                   required
-                  pattern=""
+                  onChange={(e) => checkPass(e, 2)}
                 ></input>
                 {/* <label className="signup__label" htmlFor="password__re">Re-enter Password</label> */}
                 <input
@@ -69,8 +70,7 @@ export default function SignUp(props) {
                   placeholder="Retype password"
                   minLength="8"
                   required
-                  pattern=""
-                  onChange={checkPass}
+                  onChange={(e) => checkPass(e, 1)}
                 ></input>
                 {/* <label className="signup__label" htmlFor="salary">What is your monthly salary?</label> */}
                 <input
