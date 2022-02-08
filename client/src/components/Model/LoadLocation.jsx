@@ -3,6 +3,7 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
+// load the symbol of different locations
 export default function LoadLocation(props) {
 
     const ref = useRef();
