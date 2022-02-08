@@ -3,6 +3,7 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
+// load the different models of homes
 export default function LoadHome(props) {
 
     const ref = useRef();
@@ -26,7 +27,7 @@ export default function LoadHome(props) {
             </mesh>
         )
     } else if (props.style==="apartment") {
-        console.log("render apartment");
+        // console.log("render apartment");
         return (
             <mesh
             {...props}
@@ -36,7 +37,7 @@ export default function LoadHome(props) {
             </mesh>
         )
     } else if (props.style==="townhouse") {
-        console.log("render townhouse");
+        // console.log("render townhouse");
         return (
             <mesh
             {...props}

@@ -31,7 +31,6 @@ function useEventListener(eventName, handler, element = window) {
   }
 
 export default function Model(props) {
-    // console.log(props);
     const { camera } = useThree();
     // camera.position.z = 15;
 

@@ -21,6 +21,8 @@ export default function SignUp(props) {
     const signUp = (e) => {
         e.preventDefault();
         // console.log(e.target["email_sign"].value, e.target["password_sign"].value, e.target.salary.value)
+        // email auth here
+        
         axios.post(`${API_URL}/user/signup`, {
             email: e.target["email_sign"].value,
             password: e.target["password_sign"].value,

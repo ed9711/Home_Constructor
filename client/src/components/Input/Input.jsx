@@ -4,7 +4,8 @@ import "./Input.scss";
 import { API_URL } from '../../config';
 
 export default function Input(props) {
-    console.log(props.history);
+    // console.log(props.history);
+    // decapitated function, could be used for other user inputs in the future
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`${API_URL}/user/`, {salary:e.target.salary.value})
