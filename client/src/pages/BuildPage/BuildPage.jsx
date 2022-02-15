@@ -16,12 +16,14 @@ export default class BuildPage extends Component {
     componentDidMount = () => {
         // console.log("build did mount");
         const newState = this.state;
+        // grab prices after mounting
         axios.get(`${API_URL}/prices`)
         .then(response => {
             newState.prices = response.data;
             // return response;
         })
         .then(response => {
+            // if changing existing model
             if (this.props.match.params.modelId){
                 axios.get(`${API_URL}/model/${sessionStorage.getItem("id")}/${this.props.match.params.modelId}`)
                 .then(response => {
@@ -37,9 +39,12 @@ export default class BuildPage extends Component {
         }})
     }
 
+    // check if option is default option
     checkDefault = (value, key) => {
         return value === this.state.model[key];
     }; 
+
+    // updating state after clicking on the next button
     onClickNext = (id, e, key) => {
         e.preventDefault();
         const newState = this.state;
@@ -50,12 +55,14 @@ export default class BuildPage extends Component {
         this.setState(newState);
     }
 
+    // updating state after selecting option
     onChange = (e, key) => {
         const newState = this.state;
         newState.model[key] = e.target.form.elements[key].value;
         this.setState(newState);
     }
 
+    // changing the state back to the previous options
     onClickLast = (id, e) => {
         e.preventDefault();
         const newState = this.state;
@@ -64,6 +71,7 @@ export default class BuildPage extends Component {
         this.setState(newState);
     }
 
+    // saves current model and route to the result page
     onSumbit = (e) => {
         // console.log(e.target.age.value);
         e.preventDefault();
