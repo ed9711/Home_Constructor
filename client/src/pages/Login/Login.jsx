@@ -6,10 +6,12 @@ export default function Login(props) {
 
     const [display, setDisplay] = useState("none");
 
+    // toggle to display signup
     const handleSignUp = () => {
         setDisplay("block");
     };
 
+    // toggle to hide signup
     const handleCancel = () => {
         setDisplay("none");
     };
