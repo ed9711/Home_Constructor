@@ -7,6 +7,7 @@ import "./Profile.scss"
 export default class Profile extends Component {
     state = {userId:null, models:[]};
 
+    // get all models from single user
     getUser = (id) => {
         axios.get(`${API_URL}/model/${id}`)
             .then(response => {
@@ -31,6 +32,7 @@ export default class Profile extends Component {
         }
     }
 
+    // delete one model from database
     onDelete = (e, id) => {
         e.preventDefault();
         e.cancelBubble = true;
@@ -41,12 +43,15 @@ export default class Profile extends Component {
         });
     };
 
+    // go to build page to edit one model
     onEdit = (e, id) => {
         e.preventDefault();
         e.cancelBubble = true;
         if (e.stopPropagation) e.stopPropagation();
         this.props.history.push(`/build/${id}`);
     };
+
+    // go to result page for one model
     onResult = (id) => {
         this.props.history.push(`/result/${this.state.userId}/${id}`);
     };
